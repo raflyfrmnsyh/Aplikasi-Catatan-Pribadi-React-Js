@@ -2,56 +2,50 @@ import React from "react";
 import NoteHeader from "./NoteHeader";
 import NoteBody from "./NoteBody";
 import Button from "./Button";
-import { getInitialData } from "../utils";
-
-class NoteCard extends React.Component{
-
-    constructor(props){
-        super(props);
-
-        this.state = {
-            notes : getInitialData(),
-        }
+import { showFormattedDate } from "../utils";
 
 
-        this.onDeleteHandler = this.onDeleteHandler.bind(this);
-        this.onArchiveHandler = this.onArchiveHandler.bind(this);
+const NoteCard = ( { id, title, createdAt, body, archived, action } ) => {
+    function DeleteNote(item) {
+        action((notes) => notes.filter((note) => note.id !== item));
     }
 
-        onDeleteHandler(id){
-            const notes = this.state.notes.filter((note) => note.id !== id);
-            this.setState({notes});
-        }
-
-        onArchiveHandler(id){
-            const notes = this.state.notes.map((note) => {
-                if(note.id === id){
-                    return {...note, archived : !note.archived}
+    function ArchiveNote(item) {
+        action((notes) => 
+            notes.map((note) => {
+                if(note.id === item){
+                    return { ...note, archived: !note.archived};
                 }
                 return note;
-            });
-            this.setState({notes});
-        }
-
-    render(){
-        return(
-            <div className="note-card">
-                <NoteHeader title={"aowkaowk"} createdAt={"asdsa"}/>
-                <NoteBody body={"asdasdaksjh"}/>
-                <div className="note-footer">
-                    <Button 
-                        icon={"bx bx-trash"}
-                        eventHandler={this.onDeleteHandler}
-                    />
-                    <Button 
-                        icon={"bx bx-archive-in"}
-                        eventHandler={this.onArchiveHandler}
-                    />
-                    
-                </div>
-            </div>
+            })
         )
     }
+
+
+    return(
+        <div className="note-card">
+            <NoteHeader 
+                title={title}
+                createdAt={showFormattedDate(createdAt)}
+            />
+            <NoteBody body={body} />
+            <div className="note-footer">
+                <Button
+                    eventHandler={() => DeleteNote(id)}
+                    icon={'bx bx-trash'}
+                />
+                <Button 
+                    eventHandler={() => ArchiveNote(id)}
+                    icon={archived ? 'bx bx-archive-out' : 'bx bx-archive-in'}
+                />
+            </div>
+        </div>
+    )
+
+
 }
+
+
+
 
 export default NoteCard;
