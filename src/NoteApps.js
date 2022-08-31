@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { AddNotes, Header, NoteApp } from "./components/App";
 import { getInitialData } from "./utils";
 
-import "./styles/myStyle.css";
+// import "./styles/myStyle.css";
 
 
 function NoteApps(){
@@ -34,11 +34,13 @@ function NoteApps(){
                         label="Catatan Anda"
                         notes={ NoteActive }
                         setNotes={setNotes}
+                        className="note-section"
                     />
                     <NoteApp 
                         label="Catatan Arsip"
                         notes = { NoteArchived }
                         setNotes = { setNotes }
+                        className="note-section"
                     />
                 </main>
 

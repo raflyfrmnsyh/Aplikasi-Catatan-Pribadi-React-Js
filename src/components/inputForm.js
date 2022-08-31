@@ -1,6 +1,6 @@
 import React from "react";
 
-function InputForm( attributes ){
+const InputForm = ( attributes ) => {
     const changeHandler = (event) => {
       if (attributes.name === "title") {
         const currentText = event.target.value;

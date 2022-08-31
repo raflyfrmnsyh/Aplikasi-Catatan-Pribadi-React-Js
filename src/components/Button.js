@@ -1,10 +1,9 @@
 import React from "react";
 
-
-function Button({label, eventHandler}){
+const Button = ( { icons, eventHandler} ) => {
     return(
-        <button className="note-btn" type="button" onClick={eventHandler} data-action={label}>
-            {label}
+        <button className="note-btn" type="button" onClick={eventHandler}>
+            <i className={icons}></i>
         </button>
     )
 }

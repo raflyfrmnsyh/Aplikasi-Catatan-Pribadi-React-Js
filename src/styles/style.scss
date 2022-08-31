@@ -1,0 +1,214 @@
+$primary-color : #4C3575;
+$light-primary :rgba(120, 88, 166, 0.1);
+
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Inter', sans-serif;
+}
+.container{
+    width : 80%;
+    height  :100%;
+    margin : auto;
+}
+@mixin flexBox($align, $space, $direction : row) {
+    display: flex;
+    align-items: $align;
+    justify-content: $space;
+    flex-direction: $direction;
+}
+.header{
+    height : 80px;
+
+    .navbar-top{
+        width : 100%;
+        height :100%;
+        @include flexBox(center,space-between);
+        .header-logo{
+            color : $primary-color;
+        }
+        #search-bx{
+            outline : none;
+            border: none;
+            padding: 10px;
+            width : 240px;
+            background-color: $light-primary;
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+
+}
+.add-note_form{
+    width: 480px;
+    height : 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    @include flexBox(center, center,column );
+    margin: auto;
+    .add-note_header{
+        width:  100%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+        .add-note_small{
+            font-size: 12px;
+            opacity: .8;
+        }
+    }
+    .add-note_input{
+        width: 100%;
+
+        input{
+            width:100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            outline: none;
+            border: none;
+            background-color: $light-primary;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            
+        }
+        textarea{
+            width:100%;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: $light-primary;
+            border: none;
+            outline: none;
+            min-width: 100%;
+            max-width: 100%;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            min-height: 80px;
+            max-height: 80px;
+            margin-bottom: 10px;
+        }
+        #button_submit{
+            width: 240px;
+            background-color: $primary-color;
+            color : #fff;
+            cursor: pointer;
+            transition: all ease .4s;
+            margin-left: 136px;
+        }
+        #button_submit:hover{
+            opacity: .92;
+        }
+    }
+}
+.note-app{
+    .note-app_header{
+        margin-bottom: 40px;
+        margin-top: 40px;
+        color: $primary-color;
+        opacity: .8;
+        text-align: center;
+        border-bottom: 2px solid $light-primary;
+        padding-bottom: 20px;
+    }
+    .empty-note{
+        text-align: center;
+        opacity: .4;
+    }
+    .note-app_list{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+}
+
+.note-item{
+    width : 280px;
+    margin-bottom: 40px;
+    background-color: rgba(242, 242, 242, 0.6);
+    padding: 20px;
+    .note-header{
+        font-size: 16px;
+        .note-date{
+            font-size: 12px;
+            opacity: .6;
+        }
+    }
+    .note-body{
+        width: 96%;
+        text-align: justify;
+        margin-top: 20px;
+        font-size: 12px;
+        line-height: 22px;
+        margin-bottom: 20px;
+        opacity: .8;
+    }
+    .note-footer{
+        .note-btn{
+            width: 42px;
+            height: 42px;
+            font-size: 18px;
+            outline: none;
+            border: none;
+            margin-right: 10px;
+            background-color: $light-primary;
+            color : $primary-color;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all ease .4s;
+        }
+        .note-btn:hover{
+            background-color: $primary-color;
+            color: #fff;
+        }
+    }
+}
+
+
+@media screen and (max-width : 768px){
+    .header{
+        height : 100%;
+    
+        .navbar-top{
+            width : 100%;
+            height :100%;
+            @include flexBox(center,center,column);
+            .header-logo{
+                margin-top: 20px;
+                color : $primary-color;
+            }
+            #search-bx{
+                width: 300px;
+               margin-top: 20px;
+               padding: 14px;
+            }
+        }
+    }
+    .add-note_form{
+        width: 100%;
+        .add-note_input{
+            width: 100%;
+    
+            input{
+                width:100%;
+                padding-right: 0px;
+                outline: none;
+            }
+            textarea{
+                width:100%;
+                padding-right: 0px;
+            }
+            #button_submit{
+                width: 60%;
+                background-color: $primary-color;
+                color : #fff;
+                cursor: pointer;
+                transition: all ease .4s;
+                margin-left: 68px;
+            }
+            #button_submit:hover{
+                opacity: .92;
+            }
+        }
+    }
+}
