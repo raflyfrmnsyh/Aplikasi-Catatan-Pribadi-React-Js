@@ -1,13 +1,12 @@
 import React from "react";
 
-const Button = ( { icon, eventHandler } ) => {
 
+function Button({label, eventHandler}){
     return(
-        <button type="button" className="btn" onClick={ eventHandler }>
-            <i className={icon}></i>
+        <button className="note-btn" type="button" onClick={eventHandler} data-action={label}>
+            {label}
         </button>
     )
-
 }
 
 export default Button;

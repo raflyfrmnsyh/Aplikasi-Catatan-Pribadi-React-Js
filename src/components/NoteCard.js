@@ -1,51 +1,37 @@
 import React from "react";
-import NoteHeader from "./NoteHeader";
-import NoteBody from "./NoteBody";
-import Button from "./Button";
 import { showFormattedDate } from "../utils";
+import Button from "./Button";
 
 
 const NoteCard = ( { id, title, createdAt, body, archived, action } ) => {
-    function DeleteNote(item) {
-        action((notes) => notes.filter((note) => note.id !== item));
-    }
 
-    function ArchiveNote(item) {
+    const deleteBtn = ( item ) => action((notes) => notes.filter((note) => note.id !== item));
+    
+    const archivedBtn = ( item ) => {
         action((notes) => 
             notes.map((note) => {
                 if(note.id === item){
-                    return { ...note, archived: !note.archived};
+                    return { ...note, archived: !note.archived };
                 }
                 return note;
-            })
-        )
-    }
+            }),
+        );
+    };
 
 
-    return(
-        <div className="note-card">
-            <NoteHeader 
-                title={title}
-                createdAt={showFormattedDate(createdAt)}
-            />
-            <NoteBody body={body} />
-            <div className="note-footer">
-                <Button
-                    eventHandler={() => DeleteNote(id)}
-                    icon={'bx bx-trash'}
-                />
-                <Button 
-                    eventHandler={() => ArchiveNote(id)}
-                    icon={archived ? 'bx bx-archive-out' : 'bx bx-archive-in'}
-                />
-            </div>
+    return (
+        <div className="note-card" id={id}>
+            <header className="note-card_header">
+                <h3 className="card_header-title">{title}</h3>
+                <small className="card_header-date">{showFormattedDate(createdAt)}</small>
+            </header>
+            <p className="note-body">{ body }</p>
+            <footer className="note-card_footer">
+                <Button eventHandler={() => deleteBtn(id)} label="delete"></Button>
+                <Button eventHandler={() => archivedBtn(id)} label={archived ? "unarchived" : "archive"}></Button>
+            </footer>
         </div>
     )
-
-
 }
-
-
-
 
 export default NoteCard;

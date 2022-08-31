@@ -1,28 +1,22 @@
 import React from "react";
-import Input from "./Input";
+import InputForm from "./inputForm";
 
-const Header = ( {search, updateQuery} ) => {
+const Header = ( { search, updateQuery } ) => {
     return(
         <header className="header">
             <div className="container">
-                <nav>
-                    <div className="nav-logo">
-                        <h2>NoteApps - rflyfrmnsyh</h2>
-                    </div>
-                    <div className="search-box">
-                        <Input 
-                            value={search}
-                            onChange={updateQuery}
-                            type="search"
-                            name = "search-note"
-                            placeholder = "Temukan Catatan..."
-                        />
-                    </div>
-                </nav>
+                <img className="header-logo" src="./images/logo.png"/>
+                <InputForm 
+                    value = {search}
+                    onChange = {updateQuery}
+                    type = "search"
+                    id = "header-search"
+                    name = "search_note"
+                    placeholder = "Search notes..."
+                />
             </div>
         </header>
     )
 }
-
 
 export default Header;
